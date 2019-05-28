@@ -1,4 +1,4 @@
-.login-control{
+.login-control {
   flex-shrink: 0;
 }
 
@@ -8,16 +8,14 @@
 }
 
 /* The user account dropdown menu */
-.login-control-menu {
-  .dropdown-toggle {
+.user-menu {
+  .provider {
+    color: $gray-light;
+    display: none;
+  }
+  &:hover {
     .provider {
-      color: $gray-light;
-      display: none;
-    }
-    &:hover {
-      .provider {
-        display: inline;
-      }
+      display: inline;
     }
   }
 
