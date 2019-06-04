@@ -11,6 +11,10 @@ describe.only('loginControl', function() {
     angular.module('app', []).component('loginControl', loginControl);
   });
 
+  beforeEach(function() {
+    angular.mock.module('app', {});
+  });
+
   context('old controls when a H user is logged in', function() {
     it('shows the complete list of menu options', function() {
       const el = util.createDirective(document, 'loginControl', {
