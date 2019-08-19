@@ -67,7 +67,7 @@ describe('sidebar.store.create-store', () => {
   it('applies `thunk` middleware by default', () => {
     const store = counterStore();
     const doubleAction = (dispatch, getState) => {
-      dispatch(counterModule.actions.increment(getState().count));
+      dispatch(counterModule.actions.increment(getState().base.count));
     };
 
     store.increment(5);

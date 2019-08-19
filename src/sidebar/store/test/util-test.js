@@ -14,8 +14,23 @@ const fixtures = {
       return { tab: action.tab };
     },
   },
-  countAnnotations: function(state) {
-    return state.annotations.length;
+  selectors: {
+    namespace1: {
+      selectors: {
+        countAnnotations1: function(state) {
+          return state.namespace1.annotations.length;
+        },
+      },
+    },
+    namespace2: {
+      scopeSelector: true,
+      selectors: {
+        countAnnotations2: function(state) {
+          // scopeSelector does not need namespaced path
+          return state.annotations.length;
+        },
+      },
+    },
   },
 };
 
@@ -36,6 +51,15 @@ describe('reducer utils', function() {
   });
 
   describe('#createReducer', function() {
+    it('can not return undefined during initialization', function() {
+      // See redux.js:assertReducerShape
+      const reducer = util.createReducer(fixtures.update);
+      const initialState = reducer(undefined, {
+        type: 'fake',
+      });
+      assert.isOk(initialState);
+    });
+
     it('returns a reducer that combines each update function from the input object', function() {
       const reducer = util.createReducer(fixtures.update);
       const newState = reducer(
@@ -109,19 +133,19 @@ describe('reducer utils', function() {
 
   describe('#bindSelectors', function() {
     it('bound functions call original functions with current value of getState()', function() {
-      const annotations = [{ id: 1 }];
-      const getState = sinon.stub().returns({ annotations: annotations });
-      const bound = util.bindSelectors(
-        {
-          countAnnotations: fixtures.countAnnotations,
+      const getState = sinon.stub().returns({
+        namespace1: {
+          annotations: [{ id: 1 }],
         },
-        getState
-      );
-
-      assert.equal(bound.countAnnotations(), 1);
-
-      getState.returns({ annotations: annotations.concat([{ id: 2 }]) });
-      assert.equal(bound.countAnnotations(), 2);
+        namespace2: {
+          annotations: [{ id: 1 }],
+        },
+      });
+      const bound = util.bindSelectors(fixtures.selectors, getState);
+      // test namespaced selector
+      assert.equal(bound.countAnnotations1(), 1);
+      // test scopeSelector
+      assert.equal(bound.countAnnotations2(), 1);
     });
   });
 });
