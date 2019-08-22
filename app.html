@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hypothesis</title>
+
+    <base target="_top" href="/" />
+
+</head>
+
+<body>
+    <hypothesis-app></hypothesis-app>
+
+
+    <!-- App Configuration !-->
+    <!-- <script class="js-hypothesis-config js-hypothesis-settings" type="application/json">
+      {"apiUrl": "https://hypothes.is/api/", "authDomain": "hypothes.is", "oauthClientId": "631206c8-7792-11e7-90b3-872e79925778", "release": "20190819+g6a18a34f5", "rpcAllowedOrigins": ["https://lti.hypothes.is", "https://qa-lti.hypothes.is"], "websocketUrl": "wss://hypothes.is/ws", "raven": {"dsn": "https://934d4f62912b47d8bb03c28ae6670cf8@sentry.io/69811", "release": "20190819+g6a18a34f5"}, "googleAnalytics": "UA-26026798-5"}
+    </script> -->
+    <script class="js-hypothesis-config js-hypothesis-settings" type="application/json">
+        {"apiUrl": "http://127.0.0.1:8000/safeview/api/", "authDomain": "mr2020.tech", "oauthClientId": "631206c8-7792-11e7-90b3-872e79925778", "release": "20190819+g6a18a34f5", "rpcAllowedOrigins": ["https://lti.hypothes.is", "https://qa-lti.hypothes.is"], "websocketUrl": "wss://hypothes.is/ws", "googleAnalytics": "UA-26026798-5"}
+    </script>
+
+    <!-- Client boot script !-->
+    <!-- <script src="/embed.js"></script> -->
+    <script src="http://localhost:3001/hypothesis"></script>
+
+</body>
+
+</html>

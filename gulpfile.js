@@ -321,10 +321,10 @@ let isFirstBuild = true;
  */
 function generateBootScript(manifest) {
   const { version } = require('./package.json');
-
-  const defaultSidebarAppUrl = process.env.SIDEBAR_APP_URL
-    ? `${process.env.SIDEBAR_APP_URL}`
-    : 'https://hypothes.is/app.html';
+  const defaultSidebarAppUrl = "http://localhost:5500/app.html";
+  // const defaultSidebarAppUrl = process.env.SIDEBAR_APP_URL
+  //   ? `${process.env.SIDEBAR_APP_URL}`
+  //   : 'https://hypothes.is/app.html';
 
   let defaultAssetRoot;
 
@@ -460,17 +460,18 @@ gulp.task('test-watch', function(callback) {
 gulp.task(
   'upload-sourcemaps',
   gulp.series('build-js', function() {
-    const uploadToSentry = require('./scripts/gulp/upload-to-sentry');
+    // const uploadToSentry = require('./scripts/gulp/upload-to-sentry');
 
-    const opts = {
-      key: getEnv('SENTRY_API_KEY'),
-      organization: getEnv('SENTRY_ORGANIZATION'),
-    };
-    const projects = getEnv('SENTRY_PROJECTS').split(',');
-    const release = getEnv('SENTRY_RELEASE_VERSION');
+  //   const opts = {
+  //     key: getEnv('SENTRY_API_KEY'),
+  //     organization: getEnv('SENTRY_ORGANIZATION'),
+  //   };
+  //   const projects = getEnv('SENTRY_PROJECTS').split(',');
+  //   const release = getEnv('SENTRY_RELEASE_VERSION');
 
-    return gulp
-      .src(['build/scripts/*.js', 'build/scripts/*.map'])
-      .pipe(uploadToSentry(opts, projects, release));
+  //   return gulp
+  //     .src(['build/scripts/*.js', 'build/scripts/*.map'])
+  //     .pipe(uploadToSentry(opts, projects, release));
+    return null;
   })
 );

@@ -135,7 +135,8 @@ function startAngularApp(config) {
       'ngRaven',
     ])
 
-    // The root component for the application
+    // The root component for the application]
+    // TODO
     .component('hypothesisApp', require('./components/hypothesis-app'))
 
     // UI components
@@ -152,34 +153,34 @@ function startAngularApp(config) {
       'annotationPublishControl',
       wrapReactComponent(require('./components/annotation-publish-control'))
     )
-    .component(
-      'annotationShareDialog',
-      require('./components/annotation-share-dialog')
-    )
+    // .component(
+    //   'annotationShareDialog',
+    //   require('./components/annotation-share-dialog')
+    // )
     .component('annotationThread', require('./components/annotation-thread'))
     .component(
       'annotationViewerContent',
       require('./components/annotation-viewer-content')
     )
     .component('excerpt', require('./components/excerpt'))
-    .component(
-      'helpLink',
-      wrapReactComponent(require('./components/help-link'))
-    )
-    .component('helpPanel', require('./components/help-panel'))
-    .component(
-      'loggedOutMessage',
-      wrapReactComponent(require('./components/logged-out-message'))
-    )
-    .component('markdown', require('./components/markdown'))
+    // .component(
+    //   'helpLink',
+    //   wrapReactComponent(require('./components/help-link'))
+    // )
+    // .component('helpPanel', require('./components/help-panel'))
+    // .component(
+    //   'loggedOutMessage',
+    //   wrapReactComponent(require('./components/logged-out-message'))
+    // )
+    // .component('markdown', require('./components/markdown'))
     .component(
       'moderationBanner',
       wrapReactComponent(require('./components/moderation-banner'))
     )
-    .component(
-      'searchStatusBar',
-      wrapReactComponent(require('./components/search-status-bar'))
-    )
+    // .component(
+    //   'searchStatusBar',
+    //   wrapReactComponent(require('./components/search-status-bar'))
+    // )
     .component(
       'focusedModeHeader',
       wrapReactComponent(require('./components/focused-mode-header'))
@@ -194,12 +195,12 @@ function startAngularApp(config) {
       wrapReactComponent(require('./components/sidebar-content-error'))
     )
     .component('sidebarTutorial', require('./components/sidebar-tutorial'))
-    .component('shareDialog', require('./components/share-dialog'))
+    // .component('shareDialog', require('./components/share-dialog'))
     .component('streamContent', require('./components/stream-content'))
     .component('svgIcon', wrapReactComponent(require('./components/svg-icon')))
     .component('tagEditor', require('./components/tag-editor'))
     .component('threadList', require('./components/thread-list'))
-    .component('topBar', wrapReactComponent(require('./components/top-bar')))
+    // .component('topBar', wrapReactComponent(require('./components/top-bar')))
     .directive('hAutofocus', require('./directive/h-autofocus'))
     .directive('hBranding', require('./directive/h-branding'))
     .directive('hOnTouch', require('./directive/h-on-touch'))
