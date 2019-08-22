@@ -4,7 +4,7 @@ const propTypes = require('prop-types');
 const { createElement } = require('preact');
 
 const AnnotationDocumentInfo = require('./annotation-document-info');
-const AnnotationShareInfo = require('./annotation-share-info');
+// const AnnotationShareInfo = require('./annotation-share-info');
 const AnnotationUser = require('./annotation-user');
 const Timestamp = require('./timestamp');
 
@@ -62,7 +62,6 @@ function AnnotationHeader({
       </div>
 
       <div className="annotation-header__row">
-        <AnnotationShareInfo annotation={annotation} isPrivate={isPrivate} />
         {!isEditing && isHighlight && (
           <div className="annotation-header__highlight">
             <i
@@ -98,3 +97,5 @@ AnnotationHeader.propTypes = {
 };
 
 module.exports = AnnotationHeader;
+
+//<AnnotationShareInfo annotation={annotation} isPrivate={isPrivate} />
