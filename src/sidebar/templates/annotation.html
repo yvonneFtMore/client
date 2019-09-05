@@ -1,5 +1,5 @@
 <header class="annotation-header" ng-if="!vm.user()">
-  <strong>You must be logged in to create annotations and highlights.</strong>
+  <!-- <strong>You must be logged in to create annotations and highlights.</strong> -->
 </header>
 
 <div ng-keydown="vm.onKeydown($event)" ng-if="vm.user()">
@@ -125,7 +125,7 @@
         label="'Reply'"
         on-click="vm.reply()"
       ></annotation-action-button>
-      <span class="annotation-share-dialog-wrapper" ng-if="vm.incontextLink()">
+      <!-- <span class="annotation-share-dialog-wrapper" ng-if="vm.incontextLink()">
         <annotation-action-button
          icon="'h-icon-annotation-share'"
          is-disabled="vm.isDeleted()"
@@ -154,7 +154,7 @@
          label="'Annotation has been reported to the moderators'"
          ng-if="vm.isFlagged()"
         ></annotation-action-button>
-      </span>
+      </span> -->
     </div>
   </footer>
 </div>

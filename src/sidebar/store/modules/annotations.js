@@ -39,7 +39,7 @@ function excludeAnnotations(current, annotations) {
 
 function findByID(annotations, id) {
   return annotations.find(function(annot) {
-    return annot.id === id;
+    return annot.id === parseInt(id);
   });
 }
 
@@ -391,7 +391,7 @@ function savedAnnotations(state) {
 /** Return true if the annotation with a given ID is currently loaded. */
 function annotationExists(state, id) {
   return state.annotations.some(function(annot) {
-    return annot.id === id;
+    return annot.id === parseInt(id);
   });
 }
 

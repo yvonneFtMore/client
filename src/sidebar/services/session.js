@@ -1,5 +1,5 @@
 'use strict';
-
+const { getCookie } = require('../util/cookies');
 const events = require('../events');
 const retryUtil = require('../util/retry');
 
@@ -67,16 +67,18 @@ function session(
       lastLoad = retryUtil
         .retryPromiseOperation(function() {
           const authority = getAuthority();
-          const opts = {};
+          const opts = {token: getCookie('token')};
           if (authority) {
             opts.authority = authority;
           }
+          console.log('read profile!!!!!!')
           return api.profile.read(opts);
         }, profileFetchRetryOpts)
         .then(function(session) {
-          update(session);
+          console.log('session => ', session)
+          update(session.results);
           lastLoadTime = Date.now();
-          return session;
+          return session.results;
         })
         .catch(function(err) {
           lastLoadTime = null;
@@ -121,13 +123,13 @@ function session(
       });
 
       // Associate error reports with the current user in Sentry.
-      if (model.userid) {
-        raven.setUserInfo({
-          id: model.userid,
-        });
-      } else {
-        raven.setUserInfo(undefined);
-      }
+      // if (model.userid) {
+      //   raven.setUserInfo({
+      //     id: model.userid,
+      //   });
+      // } else {
+      //   raven.setUserInfo(undefined);
+      // }
     }
 
     // Return the model

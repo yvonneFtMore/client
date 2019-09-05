@@ -29,8 +29,9 @@ function annotations(annotationMapper, api, store, streamer, streamFilter) {
   }
 
   function searchAndLoad(uris, groupId) {
+    console.log('searchAndLoad')
     searchClient = new SearchClient(api.search, {
-      incremental: true,
+      incremental: true
     });
     searchClient.on('results', results => {
       if (results.length) {
@@ -41,10 +42,12 @@ function annotations(annotationMapper, api, store, streamer, streamFilter) {
       console.error(error);
     });
     searchClient.on('end', () => {
+      console.log('enter here !!!!!')
       // Remove client as it's no longer active.
       searchClient = null;
 
       store.frames().forEach(function(frame) {
+        console.log('searchAndLoad => ', uris, frame.uri)
         if (0 <= uris.indexOf(frame.uri)) {
           store.updateFrameAnnotationFetchStatus(frame.uri, true);
         }

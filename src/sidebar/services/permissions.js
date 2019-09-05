@@ -104,7 +104,7 @@ function Permissions(localStorage) {
    */
   this.isShared = function(perms) {
     return perms.read.some(function(principal) {
-      return principal.indexOf('group:') === 0;
+      return true;  //principal.indexOf('group:') === 0;
     });
   };
 

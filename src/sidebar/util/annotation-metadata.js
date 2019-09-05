@@ -106,20 +106,21 @@ function isNew(annotation) {
 
 /** Return `true` if the given annotation is public, `false` otherwise. */
 function isPublic(annotation) {
-  let isPublic = false;
+  // let isPublic = false;
 
-  if (!annotation.permissions) {
-    return isPublic;
-  }
+  // if (!annotation.permissions) {
+  //   return isPublic;
+  // }
 
-  annotation.permissions.read.forEach(function(perm) {
-    const readPermArr = perm.split(':');
-    if (readPermArr.length === 2 && readPermArr[0] === 'group') {
-      isPublic = true;
-    }
-  });
+  // annotation.permissions.read.forEach(function(perm) {
+  //   console.log('annotation.permissions.read', perm)
+  //   const readPermArr = perm.split(':');
+  //   if (readPermArr.length === 2 && readPermArr[0] === 'group') {
+  //     isPublic = true;
+  //   }
+  // });
 
-  return isPublic;
+  return true;
 }
 
 /**

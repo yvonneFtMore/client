@@ -34,7 +34,6 @@ function AnnotationPublishControl({
         className="annotation-publish-control__btn-dropdown-arrow-indicator"
         style={applyTheme(themeProps, settings)}
       >
-        <div>▼</div>
       </div>
     </div>
   );
@@ -49,30 +48,8 @@ function AnnotationPublishControl({
           disabled={isDisabled}
           title={`Publish this annotation to ${publishDestination}`}
         >
-          Post to {publishDestination}
+          Submit
         </button>
-        <Menu
-          arrowClass="annotation-publish-control__btn-menu-arrow"
-          containerPositioned={false}
-          contentClass="annotation-publish-control__btn-menu-content"
-          label={menuLabel}
-          menuIndicator={false}
-          title="Change annotation sharing setting"
-          align="left"
-        >
-          <MenuItem
-            icon={group.type === 'open' ? 'public' : 'groups'}
-            label={group.name}
-            isSelected={isShared}
-            onClick={() => onSetPrivacy({ level: 'shared' })}
-          />
-          <MenuItem
-            icon="lock"
-            label="Only Me"
-            isSelected={!isShared}
-            onClick={() => onSetPrivacy({ level: 'private' })}
-          />
-        </Menu>
       </div>
       <button
         className="annotation-publish-control__cancel-btn btn-clean"

@@ -1,5 +1,5 @@
 'use strict';
-
+const { getCookie } = require('./util/cookies');
 const EventEmitter = require('tiny-emitter');
 
 /**
@@ -35,6 +35,7 @@ class SearchClient extends EventEmitter {
         sort: 'created',
         order: 'asc',
         _separate_replies: true,
+        token: getCookie('token')
       },
       query
     );
@@ -46,7 +47,7 @@ class SearchClient extends EventEmitter {
           return;
         }
 
-        const chunk = results.rows.concat(results.replies || []);
+        const chunk = results.results.rows.concat(results.replies || []);
         if (self._incremental) {
           self.emit('results', chunk);
         } else {
@@ -59,7 +60,7 @@ class SearchClient extends EventEmitter {
         // end up repeating the same query for the next page. If the server's
         // `total` count is incorrect for any reason, that will lead to the client
         // polling the server indefinitely.
-        const nextOffset = offset + results.rows.length;
+        const nextOffset = offset + results.results.rows.length;
         if (results.total > nextOffset && chunk.length > 0) {
           self._getBatch(query, nextOffset);
         } else {

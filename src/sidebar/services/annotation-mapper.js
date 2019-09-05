@@ -1,11 +1,11 @@
 'use strict';
-
+const { getCookie } = require('../util/cookies');
 const angular = require('angular');
 
 const events = require('../events');
 
 function getExistingAnnotation(store, id) {
-  return store.getState().annotations.find(function(annot) {
+  return store.getState().annotations.find(function (annot) {
     return annot.id === id;
   });
 }
@@ -17,7 +17,7 @@ function annotationMapper($rootScope, store, api) {
     annotations = annotations.concat(replies || []);
 
     const loaded = [];
-    annotations.forEach(function(annotation) {
+    annotations.forEach(function (annotation) {
       const existing = getExistingAnnotation(store, annotation.id);
       if (existing) {
         $rootScope.$broadcast(events.ANNOTATION_UPDATED, annotation);
@@ -30,7 +30,7 @@ function annotationMapper($rootScope, store, api) {
   }
 
   function unloadAnnotations(annotations) {
-    const unloaded = annotations.map(function(annotation) {
+    const unloaded = annotations.map(function (annotation) {
       const existing = getExistingAnnotation(store, annotation.id);
       if (existing && annotation !== existing) {
         annotation = angular.copy(annotation, existing);
@@ -41,6 +41,7 @@ function annotationMapper($rootScope, store, api) {
   }
 
   function createAnnotation(annotation) {
+    console.log('createAnnotation')
     $rootScope.$broadcast(events.BEFORE_ANNOTATION_CREATED, annotation);
     return annotation;
   }
@@ -48,9 +49,11 @@ function annotationMapper($rootScope, store, api) {
   function deleteAnnotation(annotation) {
     return api.annotation
       .delete({
-        id: annotation.id,
+        id: annotation.id
+      }, {
+        token: getCookie('token')
       })
-      .then(function() {
+      .then(function () {
         $rootScope.$broadcast(events.ANNOTATION_DELETED, annotation);
         return annotation;
       });
@@ -61,7 +64,7 @@ function annotationMapper($rootScope, store, api) {
       .flag({
         id: annot.id,
       })
-      .then(function() {
+      .then(function () {
         $rootScope.$broadcast(events.ANNOTATION_FLAGGED, annot);
         return annot;
       });

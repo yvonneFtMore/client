@@ -157,6 +157,7 @@ function groups(
    * @return {Promise<Group[]>}
    */
   async function load() {
+    console.log('groups.load()')
     // Step 1: Get the URI of the active document, so we can fetch groups
     // associated with that document.
     if (isSidebar) {
@@ -270,7 +271,6 @@ function groups(
       directLinkedAnnotationGroupId,
       directLinkedGroupId
     );
-
     injectOrganizations(groups);
 
     // Step 5. Load the groups into the store and focus the appropriate

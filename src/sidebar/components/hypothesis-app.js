@@ -71,7 +71,7 @@ function HypothesisAppController(
   }
 
   // Reload the view when the user switches accounts
-  $scope.$on(events.USER_CHANGED, function(event, data) {
+  $scope.$on(events.USER_CHANGED, function (event, data) {
     self.auth = authStateFromProfile(data.profile);
   });
 
@@ -85,7 +85,7 @@ function HypothesisAppController(
     // it is added to the DOM before we try to locate and scroll to it.
     scopeTimeout(
       $scope,
-      function() {
+      function () {
         scrollIntoView($document[0].querySelector(selector));
       },
       0
@@ -98,7 +98,7 @@ function HypothesisAppController(
    * @return {Promise<void>} - A Promise that resolves when the login flow
    *   completes. For non-OAuth logins, always resolves immediately.
    */
-  this.login = function() {
+  this.login = function () {
     if (serviceConfig(settings)) {
       // Let the host page handle the login request
       bridge.call(bridgeEvents.LOGIN_REQUESTED);
@@ -116,7 +116,7 @@ function HypothesisAppController(
       });
   };
 
-  this.signUp = function() {
+  this.signUp = function () {
     analytics.track(analytics.events.SIGN_UP_REQUESTED);
 
     if (serviceConfig(settings)) {
@@ -128,12 +128,12 @@ function HypothesisAppController(
   };
 
   // Display the dialog for sharing the current page
-  this.share = function() {
+  this.share = function () {
     this.shareDialog.visible = true;
     scrollToView('share-dialog');
   };
 
-  this.showHelpPanel = function() {
+  this.showHelpPanel = function () {
     const service = serviceConfig(settings) || {};
     if (service.onHelpRequestProvided) {
       // Let the host page handle the help request.
@@ -145,7 +145,7 @@ function HypothesisAppController(
   };
 
   // Prompt to discard any unsaved drafts.
-  const promptToLogout = function() {
+  const promptToLogout = function () {
     // TODO - Replace this with a UI which doesn't look terrible.
     let text = '';
     const drafts = store.countDrafts();
@@ -164,13 +164,13 @@ function HypothesisAppController(
   };
 
   // Log the user out.
-  this.logout = function() {
+  this.logout = function () {
     if (!promptToLogout()) {
       return;
     }
 
     store.clearGroups();
-    store.unsavedAnnotations().forEach(function(annotation) {
+    store.unsavedAnnotations().forEach(function (annotation) {
       $rootScope.$emit(events.ANNOTATION_DELETED, annotation);
     });
     store.discardAllDrafts();

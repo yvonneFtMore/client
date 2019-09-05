@@ -4,7 +4,7 @@ const propTypes = require('prop-types');
 const { createElement } = require('preact');
 
 const AnnotationDocumentInfo = require('./annotation-document-info');
-// const AnnotationShareInfo = require('./annotation-share-info');
+const AnnotationShareInfo = require('./annotation-share-info');
 const AnnotationUser = require('./annotation-user');
 const Timestamp = require('./timestamp');
 
@@ -60,18 +60,6 @@ function AnnotationHeader({
           </div>
         )}
       </div>
-
-      <div className="annotation-header__row">
-        {!isEditing && isHighlight && (
-          <div className="annotation-header__highlight">
-            <i
-              className="h-icon-border-color"
-              title="This is a highlight. Click 'edit' to add a note or tag."
-            />
-          </div>
-        )}
-        {showDocumentInfo && <AnnotationDocumentInfo annotation={annotation} />}
-      </div>
     </header>
   );
 }
@@ -99,3 +87,14 @@ AnnotationHeader.propTypes = {
 module.exports = AnnotationHeader;
 
 //<AnnotationShareInfo annotation={annotation} isPrivate={isPrivate} />
+// <div className="annotation-header__row">
+//         {!isEditing && isHighlight && (
+//           <div className="annotation-header__highlight">
+//             <i
+//               className="h-icon-border-color"
+//               title="This is a highlight. Click 'edit' to add a note or tag."
+//             />
+//           </div>
+//         )}
+//         {showDocumentInfo && <AnnotationDocumentInfo annotation={annotation} />}
+//       </div>

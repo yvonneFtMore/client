@@ -300,7 +300,7 @@ function buildThread(annotations, opts) {
   if (opts.selected.length > 0) {
     thread = Object.assign({}, thread, {
       children: thread.children.filter(function(child) {
-        return opts.selected.indexOf(child.id) !== -1;
+        return opts.selected.indexOf(child.id.toString()) !== -1;
       }),
     });
   }

@@ -14,6 +14,7 @@ function apiRoutes(settings) {
   let linkCache;
 
   function getJSON(url) {
+    console.log('getJSON => ', url)
     const config = {
       headers: {
         'Hypothesis-Client-Version': '__VERSION__', // replaced by versionify
@@ -38,8 +39,10 @@ function apiRoutes(settings) {
   function routes() {
     if (!routeCache) {
       routeCache = retryPromiseOperation(() => getJSON(settings.apiUrl)).then(
-        index => index.links
+        index => index.results.links
+        // index => index.links
       );
+      console.log('First fetch whole apis: ', routeCache)
     }
     return routeCache;
   }
@@ -50,6 +53,7 @@ function apiRoutes(settings) {
    * @return {Promise<Object>} - Map of link name to URL
    */
   function links() {
+    // call /links API
     if (!linkCache) {
       linkCache = routes().then(routes => {
         return getJSON(routes.links.url);

@@ -118,15 +118,7 @@ function SelectionTabs({ isLoading, settings, session }) {
         >
           Annotations
         </Tab>
-        <Tab
-          count={noteCount}
-          isWaitingToAnchor={isWaitingToAnchorAnnotations}
-          selected={selectedTab === uiConstants.TAB_NOTES}
-          type={uiConstants.TAB_NOTES}
-          onChangeTab={selectTab}
-        >
-          Page Notes
-        </Tab>
+        
         {orphanCount > 0 && (
           <Tab
             count={orphanCount}
@@ -189,3 +181,12 @@ SelectionTabs.propTypes = {
 SelectionTabs.injectedProps = ['session', 'settings'];
 
 module.exports = withServices(SelectionTabs);
+// <Tab
+        //   count={noteCount}
+        //   isWaitingToAnchor={isWaitingToAnchorAnnotations}
+        //   selected={selectedTab === uiConstants.TAB_NOTES}
+        //   type={uiConstants.TAB_NOTES}
+        //   onChangeTab={selectTab}
+        // >
+        //   Page Notes
+        // </Tab>

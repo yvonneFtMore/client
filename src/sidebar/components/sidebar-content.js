@@ -64,7 +64,7 @@ function SidebarContentController(
   };
 
   $scope.$on('sidebarOpened', function() {
-    analytics.track(analytics.events.SIDEBAR_OPENED);
+    // analytics.track(analytics.events.SIDEBAR_OPENED);
 
     streamer.connect();
   });
@@ -120,6 +120,7 @@ function SidebarContentController(
       }
 
       const searchUris = store.searchUris();
+      console.log('annotations.load')
       annotations.load(searchUris, currentGroupId);
     },
     true
