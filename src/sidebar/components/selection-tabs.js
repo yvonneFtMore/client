@@ -152,7 +152,7 @@ function SelectionTabs({ isLoading, settings, session }) {
           {showAnnotationsUnavailableMessage && (
             <div className="annotation-unavailable-message">
               <p className="annotation-unavailable-message__label">
-                There are no annotations in this group.
+                There are no annotations.
                 {!showSidebarTutorial && (
                   <div className="annotation-unavailable-message__tutorial">
                     Create one by selecting some text and clicking the{' '}

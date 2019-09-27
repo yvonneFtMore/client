@@ -152,6 +152,8 @@ function AnnotationController(
     //
     // FIXME: This logic should go in the `addAnnotations` Redux action once all
     // required state is in the store.
+    console.log('saveNewHighlight')
+    console.log(self.annotation.user, session.state.userid)
     self.annotation.user = self.annotation.user || session.state.userid;
     self.annotation.user_info =
       self.annotation.user_info || session.state.user_info;
@@ -200,10 +202,10 @@ function AnnotationController(
       return;
     }
 
-    // if (!self.annotation.user) {
-    //   // Open sidebar to display error message about needing to login to create highlights.
-    //   bridge.call('showSidebar');
-    // }
+    if (!self.annotation.user) {
+      // Open sidebar to display error message about needing to login to create highlights.
+      bridge.call('showSidebar');
+    }
 
     if (!self.isHighlight()) {
       // Not a highlight,
