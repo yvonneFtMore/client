@@ -321,19 +321,19 @@ let isFirstBuild = true;
  */
 function generateBootScript(manifest) {
   const { version } = require('./package.json');
-  const defaultSidebarAppUrl = "http://localhost:5500/app.html";
+  const defaultSidebarAppUrl = "https://dev.mr2020.tech:8002/hypothesis/app.html";
   // const defaultSidebarAppUrl = process.env.SIDEBAR_APP_URL
   //   ? `${process.env.SIDEBAR_APP_URL}`
   //   : 'https://hypothes.is/app.html';
 
-  let defaultAssetRoot;
+  let defaultAssetRoot = 'https://dev.mr2020.tech:8002/hypothesis/';
 
-  if (process.env.NODE_ENV === 'production') {
-    defaultAssetRoot = `https://cdn.hypothes.is/hypothesis/${version}/`;
-  } else {
-    const scheme = useSsl ? 'https' : 'http';
-    defaultAssetRoot = `${scheme}://${packageServerHostname()}:3001/hypothesis/${version}/`;
-  }
+  // if (process.env.NODE_ENV === 'production') {
+  //   defaultAssetRoot = `https://cdn.hypothes.is/hypothesis/${version}/`;
+  // } else {
+  //   const scheme = useSsl ? 'https' : 'http';
+  //   defaultAssetRoot = `${scheme}://${packageServerHostname()}:3001/hypothesis/${version}/`;
+  // }
 
   if (isFirstBuild) {
     gulpUtil.log(`Sidebar app URL: ${defaultSidebarAppUrl}`);
